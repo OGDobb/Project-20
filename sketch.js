@@ -6,17 +6,17 @@ function setup() {
   createCanvas(1600,400);
   createSprite(400, 200, 50, 50);
 
-  car=createSprite(50, 200, 10, 30);
-  
   speed=random(55,90);
   weight=random(400,1500);
+
+  car=createSprite(50, 200, 10, 30);
   
+  thickness=random(22,80);
   
-  
-  wall=createSprite(1500, 200, thickness, height/2);
+  wall=createSprite(1500, 200, 60, height/2);
   wall.shapeColor=(80,80,80);
 
-  thickness=random(22,80);
+  
 
   speed=random(223,321);
   weight=random(30,52);
@@ -33,13 +33,15 @@ function draw() {
 
   if(hasCollided(car, wall)) {
   car.velocityX=0;
-  var damage=0.5 * weight * speed * speed/(thickness * thickness * thickness);
+  var deformation=0.5 * weight * speed * speed/(22500);
   
-  if(damage>10) {
+  if(deformation>180) {
   wall.shapeColor=color(255,0,0);
   }
-
-  if(damage>10) {
+  if(deformation<180 && deformation>100) {
+    wall.shapeColor=color(230,230,0);
+  }
+  if(deformation<100) {
   wall.shapeColor=color(0,255,0);
   }
   }
